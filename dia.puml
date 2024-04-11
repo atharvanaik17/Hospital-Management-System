@@ -1,0 +1,18 @@
+@startuml
+testdot
+
+title System Architecture for Google AI-ML Course Units
+
+rectangle "Data Collection\nand Preprocessing" {
+    rectangle "Model Development\nand Training" {
+        rectangle "Model Evaluation\nand Validation" {
+            rectangle "Deployment and\nIntegration" {
+                rectangle "Monitoring and\nMaintenance" {
+                    rectangle "Collaboration and\nVersion Control"
+                }
+            }
+        }
+    }
+}
+
+@enduml
