@@ -320,16 +320,7 @@
                                 '.$email.'<br><br>
                                 </td>
                             </tr>
-                            <tr>
-                                <td class="label-td" colspan="2">
-                                    <label for="nic" class="form-label">NIC: </label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="label-td" colspan="2">
-                                '.$nic.'<br><br>
-                                </td>
-                            </tr>
+
                             <tr>
                                 <td class="label-td" colspan="2">
                                     <label for="Tele" class="form-label">Telephone: </label>
@@ -392,7 +383,6 @@
             
             
             $address=$row["paddress"];
-            $nic=$row['pnic'];
             $tele=$row['ptel'];
 
             $error_1=$_GET["error"];
@@ -452,16 +442,7 @@
                                         
                                     </tr>
                                     
-                                    <tr>
-                                        <td class="label-td" colspan="2">
-                                            <label for="nic" class="form-label">NIC: </label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="label-td" colspan="2">
-                                            <input type="text" name="nic" class="input-text" placeholder="NIC Number" value="'.$nic.'" required><br>
-                                        </td>
-                                    </tr>
+                                    
                                     <tr>
                                         <td class="label-td" colspan="2">
                                             <label for="Tele" class="form-label">Telephone: </label>

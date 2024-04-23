@@ -14,8 +14,7 @@
 <body>
 <?php
 
-//learn from w3schools.com
-//Unset all the server side variables
+
 
 session_start();
 
@@ -38,7 +37,7 @@ if($_POST){
         'fname'=>$_POST['fname'],
         'lname'=>$_POST['lname'],
         'address'=>$_POST['address'],
-      //  'nic'=>$_POST['nic'],
+     
         'dob'=>$_POST['dob']
     );
 
@@ -54,78 +53,112 @@ if($_POST){
 ?>
 
 
-    <center>
-    <div class="container">
-        <table border="0">
-            <tr>
-                <td colspan="2">
-                    <p class="header-text">Let's Get Started</p>
-                    <p class="sub-text">Add Your Personal Details to Continue</p>
-                </td>
-            </tr>
-            <tr>
-                <form action="" method="POST" >
-                <td class="label-td" colspan="2">
-                    <label for="name" class="form-label">Name: </label>
-                </td>
-            </tr>
-            <tr>
-                <td class="label-td">
-                    <input type="text" name="fname" class="input-text" placeholder="First Name" required>
-                </td>
-                <td class="label-td">
-                    <input type="text" name="lname" class="input-text" placeholder="Last Name" required>
-                </td>
-            </tr>
-            <tr>
-                <td class="label-td" colspan="2">
-                    <label for="address" class="form-label">Address: </label>
-                </td>
-            </tr>
-            <tr>
-                <td class="label-td" colspan="2">
-                    <input type="text" name="address" class="input-text" placeholder="Address" required>
-                </td>
-            </tr>
-           
-            <tr>
-                <td class="label-td" colspan="2">
-                    <label for="dob" class="form-label">Date of Birth: </label>
-                </td>
-            </tr>
-            <tr>
-                <td class="label-td" colspan="2">
-                    <input type="date" name="dob" class="input-text" required>
-                </td>
-            </tr>
-            <tr>
-                <td class="label-td" colspan="2">
-                </td>
-            </tr>
+<script>
+function validateForm() {
+    var fname = document.getElementById('fname').value;
+    var lname = document.getElementById('lname').value;
+    var address = document.getElementById('address').value;
+    var dob = document.getElementById('dob').value;
 
-            <tr>
-                <td>
-                    <input type="reset" value="Reset" class="login-btn btn-primary-soft btn" >
-                </td>
-                <td>
-                    <input type="submit" value="Next" class="login-btn btn-primary btn">
-                </td>
+    if (!/^[a-zA-Z]+$/.test(fname)) {
+        alert("First name should contain only alphabetic characters.");
+        return false;
+    }
 
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <br>
-                    <label for="" class="sub-text" style="font-weight: 280;">Already have an account&#63; </label>
-                    <a href="login.php" class="hover-link1 non-style-link">Login</a>
-                    <br><br><br>
-                </td>
-            </tr>
+    // Check if last name contains only alphabetic characters
+    if (!/^[a-zA-Z]+$/.test(lname)) {
+        alert("Last name should contain only alphabetic characters.");
+        return false;
+    }
 
-                    </form>
-            </tr>
-        </table>
+    // Check if address is empty
+    if (!/^[a-zA-Z]+$/.test(address)) {
+        alert("address should contain only alphabetic characters.");
+        return false;
+    }
 
-    </div>
+    // Check if date of birth is empty
+    if (dob.trim() == "") {
+        alert("Please enter your date of birth.");
+        return false;
+    }
+
+    return true;
+}
+</script>
+
+<center>
+<div class="container">
+    <table border="0">
+        <tr>
+            <td colspan="2">
+                <p class="header-text">Let's Get Started</p>
+                <p class="sub-text">Add Your Personal Details to Continue</p>
+            </td>
+        </tr>
+        <tr>
+            <form action="" method="POST" onsubmit="return validateForm()">
+            <td class="label-td" colspan="2">
+                <label for="name" class="form-label">Name: </label>
+            </td>
+        </tr>
+        <tr>
+            <td class="label-td">
+                <input type="text" name="fname" id="fname" class="input-text" placeholder="First Name" required>
+            </td>
+            <td class="label-td">
+                <input type="text" name="lname" id="lname" class="input-text" placeholder="Last Name" required>
+            </td>
+        </tr>
+        <tr>
+            <td class="label-td" colspan="2">
+                <label for="address" class="form-label">Address (city): </label>
+            </td>
+        </tr>
+        <tr>
+            <td class="label-td" colspan="2">
+                <input type="text" name="address" id="address" class="input-text" placeholder="city" required>
+            </td>
+        </tr>
+       
+        <tr>
+            <td class="label-td" colspan="2">
+                <label for="dob" class="form-label">Date of Birth: </label>
+            </td>
+        </tr>
+        <tr>
+            <td class="label-td" colspan="2">
+                <input type="date" name="dob" id="dob" class="input-text" required>
+            </td>
+        </tr>
+        <tr>
+            <td class="label-td" colspan="2">
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <input type="reset" value="Reset" class="login-btn btn-primary-soft btn" >
+            </td>
+            <td>
+                <input type="submit" value="Next" class="login-btn btn-primary btn">
+            </td>
+
+        </tr>
+        <tr>
+            <td colspan="2">
+                <br>
+                <label for="" class="sub-text" style="font-weight: 280;">Already have an account&#63; </label>
+                <a href="login.php" class="hover-link1 non-style-link">Login</a>
+                <br><br><br>
+            </td>
+        </tr>
+
+                </form>
+        </tr>
+    </table>
+
+</div>
 </center>
 </body>
 </html>

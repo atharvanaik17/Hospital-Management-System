@@ -48,7 +48,7 @@ if($_POST){
     $lname=$_SESSION['personal']['lname'];
     $name=$fname." ".$lname;
     $address=$_SESSION['personal']['address'];
-    $nic=$_SESSION['personal']['nic'];
+    //$nic=$_SESSION['personal']['nic'];
     $dob=$_SESSION['personal']['dob'];
     $email=$_POST['newemail'];
     $tele=$_POST['tele'];
@@ -65,7 +65,7 @@ if($_POST){
             $error='<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Already have an account for this Email address.</label>';
         }else{
             //TODO
-            $database->query("insert into patient(pemail,pname,ppassword, paddress, pnic,pdob,ptel) values('$email','$name','$newpassword','$address','$nic','$dob','$tele');");
+            $database->query("insert into patient(pemail,pname,ppassword, paddress,pdob,ptel) values('$email','$name','$newpassword','$address','$dob','$tele');");
             $database->query("insert into webuser values('$email','p')");
 
             //print_r("insert into patient values($pid,'$email','$fname','$lname','$newpassword','$address','$nic','$dob','$tele');");
@@ -92,24 +92,24 @@ if($_POST){
 ?>
 
 
-    <center>
+<center>
     <div class="container">
         <table border="0" style="width: 69%;">
             <tr>
                 <td colspan="2">
                     <p class="header-text">Let's Get Started</p>
-                    <p class="sub-text">It's Okey, Now Create User Account.</p>
+                    <p class="sub-text">Now Create User Account.</p>
                 </td>
             </tr>
             <tr>
-                <form action="" method="POST" >
+                <form action="" method="POST" onsubmit="return validateForm()">
                 <td class="label-td" colspan="2">
                     <label for="newemail" class="form-label">Email: </label>
                 </td>
             </tr>
             <tr>
                 <td class="label-td" colspan="2">
-                    <input type="email" name="newemail" class="input-text" placeholder="Email Address" required>
+                    <input type="email" name="newemail" id="newemail" class="input-text" placeholder="Email Address" required>
                 </td>
                 
             </tr>
@@ -120,7 +120,7 @@ if($_POST){
             </tr>
             <tr>
                 <td class="label-td" colspan="2">
-                    <input type="tel" name="tele" class="input-text"  placeholder="ex: 0712345678" pattern="[0]{1}[0-9]{9}" >
+                    <input type="tel" name="tele" id="tele" class="input-text"  placeholder="ex: 9712345678"  required>
                 </td>
             </tr>
             <tr>
@@ -130,20 +130,19 @@ if($_POST){
             </tr>
             <tr>
                 <td class="label-td" colspan="2">
-                    <input type="password" name="newpassword" class="input-text" placeholder="New Password" required>
+                    <input type="password" name="newpassword" id="newpassword" class="input-text" placeholder="New Password" required>
                 </td>
             </tr>
             <tr>
                 <td class="label-td" colspan="2">
-                    <label for="cpassword" class="form-label">Conform Password: </label>
+                    <label for="cpassword" class="form-label">Confirm Password: </label>
                 </td>
             </tr>
             <tr>
                 <td class="label-td" colspan="2">
-                    <input type="password" name="cpassword" class="input-text" placeholder="Conform Password" required>
+                    <input type="password" name="cpassword" id="cpassword" class="input-text" placeholder="Confirm Password" required>
                 </td>
             </tr>
-     
             <tr>
                 
                 <td colspan="2">
@@ -176,5 +175,37 @@ if($_POST){
 
     </div>
 </center>
+
+<script>
+function validateForm() {
+    var email = document.getElementById('newemail').value;
+    var tele = document.getElementById('tele').value;
+    var password = document.getElementById('newpassword').value;
+    var confirmPassword = document.getElementById('cpassword').value;
+
+    // Email validation
+    var emailRegex =/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!emailRegex.test(email)) {
+        alert("Please enter a valid email address.");
+        return false;
+    }
+
+    //Mobile number validation
+    var teleRegex = /^[1-9][0-9]{9}$/; // 10 digits not starting with 0
+    if (!teleRegex.test(tele)) {
+        alert("Please enter a valid mobile number with 10 digits and not starting with 0.");
+        return false;
+    }
+
+    // Password validation
+    if (password !== confirmPassword) {
+        alert("Password and Confirm Password do not match.");
+        return false;
+    }
+
+    return true;
+}
+</script>
+
 </body>
 </html>
