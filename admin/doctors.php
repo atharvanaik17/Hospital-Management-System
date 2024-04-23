@@ -406,6 +406,48 @@
                 );
                 if($error_1!='4'){
                 echo '
+                <script>
+        function validateForm() {
+            var name = document.forms["addNewForm"]["name"].value;
+            var email = document.forms["addNewForm"]["email"].value;
+            var tele = document.forms["addNewForm"]["Tele"].value;
+            var password = document.forms["addNewForm"]["password"].value;
+            var cpassword = document.forms["addNewForm"]["cpassword"].value;
+
+            if (!/^[a-zA-Z]+$/.test(name)) {
+                alert("First name should contain only alphabetic characters.");
+                return false;
+            }
+            //Mobile number validation
+            var teleRegex = /^[1-9][0-9]{9}$/; // 10 digits not starting with 0
+            if (!teleRegex.test(tele)) {
+                alert("Please enter a valid mobile number with 10 digits and not starting with 0.");
+                return false;
+            }
+            // Check if email field is empty
+            if (email == "") {
+                alert("Email must be filled out");
+                return false;
+            }
+
+            // Check if email is valid
+            var emailPattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+            if (!emailPattern.test(email)) {
+                alert("Invalid email address");
+                return false;
+            }
+
+            // You can add more validations for other fields here...
+
+            // Check if password fields match
+            if (password !== cpassword) {
+                alert("Passwords do not match");
+                return false;
+            }
+
+            return true;
+        }
+        </script>
             <div id="popup1" class="overlay">
                     <div class="popup">
                     <center>
@@ -426,7 +468,8 @@
                             </tr>
                             
                             <tr>
-                                <form action="add-new.php" method="POST" class="add-new-form" onsubmit="return validateForm()">
+                            <form id="addNewForm" action="add-new.php" method="POST" class="add-new-form" onsubmit="return validateForm()">
+
                                 <td class="label-td" colspan="2">
                                     <label for="name" class="form-label">Name: </label>
                                 </td>
@@ -727,41 +770,7 @@
 ?>
 </div>
 
-<script>
-function validateForm() {
-    var email = document.getElementById('email').value;
-    var name = document.getElementById('name').value;
-    var tele = document.getElementById('Tele').value;
-    var password = document.getElementById('password').value;
-    var confirmPassword = document.getElementById('cpassword').value;
 
-    if (!/^[a-zA-Z]+$/.test(name)) {
-        alert("First name should contain only alphabetic characters.");
-        return false;
-    }
-    // Email validation
-    var emailRegex =/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (!emailRegex.test(email)) {
-        alert("Please enter a valid email address.");
-        return false;
-    }
-
-    //Mobile number validation
-    var teleRegex = /^[1-9][0-9]{9}$/; // 10 digits not starting with 0
-    if (!teleRegex.test(tele)) {
-        alert("Please enter a valid mobile number with 10 digits and not starting with 0.");
-        return false;
-    }
-
-    // Password validation
-    if (password !== confirmPassword) {
-        alert("Password and Confirm Password do not match.");
-        return false;
-    }
-
-    return true;
-}
-</script>
 
 </body>
 </html>
